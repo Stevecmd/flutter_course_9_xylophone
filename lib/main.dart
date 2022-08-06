@@ -2,28 +2,24 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-void main() {
-  runApp(
-    XylophoneApp(),
-  );
-}
+void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   void playSound(int soundNum) {
     final player = AudioCache();
-    player.play('note$soundNum.wav');
+    player.play('note$soundNum.wav'); //the files are named note1.wav and so on
   }
 
-  Widget buildKey(int soundNum, Color color) {
+  Widget buildKey(int soundNum, Color color,) { //This function contains the basic layout of the app keys
     return Expanded(
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: color,
         ),
         onPressed: () {
-          playSound(soundNum);
+          playSound(soundNum); //refers to the sound number of the pressed key to play the audio
         },
-        child: Text(''),
+        child: Text('$color', style: TextStyle(color: Colors.black,),), //color of the color indicator
       ),
     );
   }
@@ -44,6 +40,7 @@ class XylophoneApp extends StatelessWidget {
               buildKey(5, Colors.teal),
               buildKey(6, Colors.blue),
               buildKey(7, Colors.purple),
+              buildKey(7, Colors.pinkAccent), //Extra Color I added
             ],
           ),
         ),
